@@ -1,0 +1,21 @@
+{
+  "name": "01-challenge-rocketseat-mapping-domain",
+  "version": "1.0.0",
+  "description": "Application for rockeseat challenge DDD",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@types/node": "^22.9.3",
+    "typescript": "^5.7.2",
+    "vitest": "^2.1.5",
+    "vitest-tsconfig-paths": "^3.4.1"
+  },
+  "dependencies": {
+    "dayjs": "^1.11.13"
+  }
+}
