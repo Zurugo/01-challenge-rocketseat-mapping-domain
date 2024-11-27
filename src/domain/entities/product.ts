@@ -1,13 +1,13 @@
 import { Entity } from "../../core/entities/entity"
+import { MinimumInventory } from "./value-objects/minimum-inventory-quantity"
 import { UniqueEntityID } from "../../core/entities/unique.entity-id"
 import { Optional } from "../../core/types/optional"
 
 
-
 interface ProductProps {
     name: string
-    minQuantity: number
-    curQuantity: number
+    minInventory: MinimumInventory
+    curInventory: number
     price: number
     size: 'SMALL' | 'MEDIUM' | 'LARGE'
     color: string
@@ -20,12 +20,12 @@ export class Product extends Entity<ProductProps> {
         return this.props.name
     }
 
-    get minQuantity() {
-        return this.props.minQuantity
+    get minInventory() {
+        return this.props.minInventory
     }
 
-    get curQuantity() {
-        return this.props.curQuantity
+    get curInventory() {
+        return this.props.curInventory
     }
 
     get price() {
@@ -53,14 +53,14 @@ export class Product extends Entity<ProductProps> {
         this.touch()
     }
 
-    set minQuantity(minQuantity: number) {
-        this.props.minQuantity = minQuantity
+    set minInventory(minInventory: MinimumInventory) {
+        this.props.minInventory = minInventory
         this.touch()
     }
 
 
-    set curQuantity(curQuantity: number) {
-        this.props.curQuantity = curQuantity
+    set curInventory(curQuantity: number) {
+        this.props.curInventory = curQuantity
         this.touch()
     }
 
