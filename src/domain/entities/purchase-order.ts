@@ -1,28 +1,21 @@
 import { Entity } from "../../core/entities/entity"
-import { UniqueEntityID } from "../../core/entities/unique.entity-id"
-import { Optional } from "../../core/types/optional"
 import { Product } from "./product"
 
-interface SalesProps {
+interface PurchaseOrderProps {
     items: Product[]
-    price: number
-    product_id: UniqueEntityID
     quantity: number
+    total: number    
     createdAt: Date
     UpdatedAt?: Date
 }
 
-export class Sales extends Entity<SalesProps> {
+export class PurchaseOrder extends Entity<PurchaseOrderProps> {
     get items() {
         return this.props.items
     }
 
     get price() {
-        return this.props.price
-    }
-
-    get product_id() {
-        return this.props.product_id
+        return this.props.total
     }
 
     get quantity() {
