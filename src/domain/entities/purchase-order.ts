@@ -1,25 +1,36 @@
 import { Entity } from "../../core/entities/entity"
+import { UniqueEntityID } from "../../core/entities/unique.entity-id"
 import { Product } from "./product"
+import { Optional } from "../../core/types/optional"
 
 interface PurchaseOrderProps {
+    purhcaserId: UniqueEntityID
+    sellerId: UniqueEntityID
     items: Product[]
-    quantity: number
-    total: number    
+    totalPrice: number    
     createdAt: Date
     UpdatedAt?: Date
 }
 
 export class PurchaseOrder extends Entity<PurchaseOrderProps> {
+    get purchaserId() {
+        return this.props.purhcaserId
+    }
+
+    get sellerId() {
+        return this.props.sellerId
+    }
+
     get items() {
         return this.props.items
     }
 
-    get price() {
-        return this.props.total
+    get totalPrice() {
+        return this.props.totalPrice
     }
 
-    get quantity() {
-        return this.props.quantity
+    get createdAt() {
+        return this.props.createdAt
     }
 
     private touch() {
@@ -31,8 +42,21 @@ export class PurchaseOrder extends Entity<PurchaseOrderProps> {
         this.touch()
     }
 
-    set quantity(quantity: number) {
-        this.props.quantity = quantity
+    set totalPrice(value: number) {
+        this.props.totalPrice = value
         this.touch()
     }
+
+    static create(
+        props: Optional<PurchaseOrderProps, 'createdAt'>,
+        id?: UniqueEntityID
+    ) {
+        const purchaseOrder = new PurchaseOrder({
+            ...props,
+            createdAt: new Date()
+        }, id)
+
+
+        return purchaseOrder
+    }    
 }

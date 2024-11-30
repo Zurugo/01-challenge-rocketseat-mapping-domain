@@ -23,11 +23,7 @@ export class Product extends Entity<ProductProps> {
         return this.props.minInventory
     }
 
-    get curInventory() {
-        return this.props.curInventory
-    }
-
-    get price() {
+    get unitPrice() {
         return this.props.unitPrice
     }
 
@@ -57,13 +53,7 @@ export class Product extends Entity<ProductProps> {
         this.touch()
     }
 
-
-    set curInventory(curQuantity: number) {
-        this.props.curInventory = curQuantity
-        this.touch()
-    }
-
-    set price(unitPrice: number) {
+    set unitPrice(unitPrice: number) {
         this.props.unitPrice = unitPrice
         this.touch()
     }

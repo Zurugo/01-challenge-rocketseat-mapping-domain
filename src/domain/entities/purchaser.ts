@@ -13,8 +13,6 @@ interface PurchaserProps {
     updatedAt?: Date
 }
 
-
-
 export class Purchaser extends Entity<PurchaserProps> {
     get name() {
         return this.props.name
