@@ -6,7 +6,6 @@ import { Optional } from "../../core/types/optional"
 interface ProductProps {
     name: string
     minInventory: MinimumInventory
-    curInventory: number
     unitPrice: number
     size: 'SMALL' | 'MEDIUM' | 'LARGE'
     color: string
