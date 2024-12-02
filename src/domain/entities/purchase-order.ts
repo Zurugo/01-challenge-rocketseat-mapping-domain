@@ -3,10 +3,16 @@ import { UniqueEntityID } from "../../core/entities/unique.entity-id"
 import { Product } from "./product"
 import { Optional } from "../../core/types/optional"
 
+
+interface OrderProducts {
+    product_id: UniqueEntityID
+    quantity: number
+}
+
 interface PurchaseOrderProps {
     purhcaserId: UniqueEntityID
     sellerId: UniqueEntityID
-    items: Product[]
+    orderProducts: OrderProducts[]
     totalPrice: number    
     createdAt: Date
     UpdatedAt?: Date
@@ -21,8 +27,8 @@ export class PurchaseOrder extends Entity<PurchaseOrderProps> {
         return this.props.sellerId
     }
 
-    get items() {
-        return this.props.items
+    get orderProducts() {
+        return this.props.orderProducts
     }
 
     get totalPrice() {
@@ -37,8 +43,8 @@ export class PurchaseOrder extends Entity<PurchaseOrderProps> {
         this.props.UpdatedAt = new Date()
     }
 
-    set items(items: Product[]) {
-        this.props.items = items
+    set orderProducts(value: OrderProducts[]) {
+        this.props.orderProducts = value
         this.touch()
     }
 

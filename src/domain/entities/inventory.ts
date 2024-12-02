@@ -1,13 +1,16 @@
 import { Entity } from "../../core/entities/entity"
 import { Optional } from "../../core/types/optional"
 import { UniqueEntityID } from "../../core/entities/unique.entity-id"
+import { MinimumInventory } from "./value-objects/minimum-inventory-quantity"
 
 
 interface InventoryProps {
     productId: UniqueEntityID
+    minInventory: MinimumInventory
     quantity: number
+    unitPrice: number
     createdAt: Date
-    updatedAt: Date
+    updatedAt?: Date
 }
 
 export class Inventory extends Entity<InventoryProps> {
@@ -15,8 +18,16 @@ export class Inventory extends Entity<InventoryProps> {
         return this.props.productId
     }
 
+    get minInventory() {
+        return this.props.minInventory
+    }
+
     get quantity() {
         return this.props.quantity
+    }
+
+    get unitPrice() {
+        return this.props.unitPrice
     }
 
     get createdAt() {
@@ -30,9 +41,19 @@ export class Inventory extends Entity<InventoryProps> {
     private touch() {
         this.props.updatedAt = new Date()
     }
+    
+    set minInventory(minInventory: MinimumInventory) {
+        this.props.minInventory = minInventory
+        this.touch()
+    }
 
     set quantity(quantity: number) {
         this.props.quantity = quantity
+        this.touch()
+    }
+
+    set unitPrice(value: number) {
+        this.props.unitPrice = value
         this.touch()
     }
 
