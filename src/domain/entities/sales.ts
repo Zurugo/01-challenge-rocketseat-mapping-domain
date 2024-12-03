@@ -2,13 +2,11 @@ import { Entity } from "../../core/entities/entity"
 import { UniqueEntityID } from "../../core/entities/unique.entity-id"
 import { Optional } from "../../core/types/optional"
 
-
-
 interface SaleProps {
     purchaseOrderId: UniqueEntityID
     totalPrice: number
     createdAt: Date
-    updatedAt: Date
+    updatedAt?: Date
 }
 
 export class Sale extends Entity<SaleProps> {
