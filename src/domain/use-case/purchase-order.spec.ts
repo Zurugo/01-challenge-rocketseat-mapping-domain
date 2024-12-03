@@ -1,4 +1,4 @@
-import { CreatePurchaseOrderUseCase } from "./create-purchase-order"
+import { CreatePurchaseOrderUseCase } from "./purchase-order"
 import { PurchaseOrderRepository } from "../repositories/purcharse-order-repository"
 import { PurchaseOrder } from "../entities/purchase-order"
 import { Product } from "../entities/product"

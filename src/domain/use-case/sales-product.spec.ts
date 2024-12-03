@@ -17,8 +17,6 @@ test('create an sale', async () => {
         purchaseOrderId: '1',
         totalPrice: 321
     })
-
-    console.log(sale)
     
     expect(sale.id).toEqual(expect.any(UniqueEntityID))
     expect(sale.totalPrice).toEqual(321)

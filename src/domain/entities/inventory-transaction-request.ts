@@ -5,6 +5,7 @@ import { Optional } from "../../core/types/optional"
 interface ReqTransactionInventoryProps {
     inventoryId: UniqueEntityID
     transactionType: 'INBOUND' | 'OUTBOUND'
+    quantity: number
     createdAt: Date
     updatedAt?: Date
 }
@@ -16,6 +17,10 @@ export class RequestTransactionInventory extends Entity<ReqTransactionInventoryP
 
     get transactionType() {
         return this.props.transactionType
+    }
+
+    get quantity() {
+        return this.props.quantity
     }
 
     get createdAt() {
@@ -32,6 +37,11 @@ export class RequestTransactionInventory extends Entity<ReqTransactionInventoryP
 
     set transactionType(type: 'INBOUND' | 'OUTBOUND') {
         this.props.transactionType = type
+        this.touch()
+    }
+
+    set quantity(value: number) {
+        this.props.quantity = value
         this.touch()
     }
 
