@@ -82,6 +82,6 @@ export class Inventory extends Entity<InventoryProps> {
             createdAt: new Date()
         }, id)
 
-        return Inventory
+        return inventory
     }
 }

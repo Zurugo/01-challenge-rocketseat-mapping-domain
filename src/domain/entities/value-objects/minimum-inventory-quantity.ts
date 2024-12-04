@@ -5,9 +5,12 @@ export class MinimumInventory {
         this.value = value
     }
 
-    static verifyIventory(minimumInventory: number, currentIventory: number) {   
-        if (currentIventory <= minimumInventory) {
+    static verifyInventory(minimumInventory: number, currentInventory: number) { 
+
+        if (currentInventory <= minimumInventory) {
             return 'The minimum quantity this product is less than minimum register'
         }
+
+        return;
     }
 }
