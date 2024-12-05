@@ -1,5 +1,5 @@
 import { CreateSaleUseCase } from "./sales-product"
-import { SalesRespository } from "../repositories/sales-repository"
+import { SalesRespository } from "../repositories/sale-repository"
 import { Sale } from "../entities/sales"
 import { UniqueEntityID } from "@/core/entities/unique.entity-id";
 
@@ -7,6 +7,9 @@ import { UniqueEntityID } from "@/core/entities/unique.entity-id";
 const fakeSalesRepository: SalesRespository = {
     create: async (sale: Sale) => {
         return;
+    },
+    searchSalesFromPeriod: function (from: Date, to: Date): Promise<Sale[] | null> {
+        throw new Error("Function not implemented.");
     }
 }
 

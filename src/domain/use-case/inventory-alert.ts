@@ -18,8 +18,8 @@ export class InventoryAlertUseCase {
         }
 
         const minimumInventory = productInventory.minInventory.value
-        
-        const alert = MinimumInventory.verifyInventory(Number(minimumInventory), productInventory.quantity)
+          
+        const alert = MinimumInventory.verifyInventory(minimumInventory, productInventory.quantity)
     
         if (!alert) {
             return;
