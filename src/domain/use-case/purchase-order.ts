@@ -3,7 +3,7 @@ import { PurchaseOrder } from "../entities/purchase-order"
 import { PurchaseOrderRepository } from "../repositories/purcharse-order-repository"
 
 interface OrderProducts {
-    product_id: UniqueEntityID
+    productId: UniqueEntityID
     quantity: number
     subTotal: number
 }

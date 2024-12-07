@@ -8,7 +8,6 @@ interface InventoryProps {
     productId: UniqueEntityID
     minInventory: MinimumInventory
     quantity: number
-    unitPrice: number
     createdAt: Date
     updatedAt?: Date
 }
@@ -24,10 +23,6 @@ export class Inventory extends Entity<InventoryProps> {
 
     get quantity() {
         return this.props.quantity
-    }
-
-    get unitPrice() {
-        return this.props.unitPrice
     }
 
     get createdAt() {
@@ -49,11 +44,6 @@ export class Inventory extends Entity<InventoryProps> {
 
     set quantity(quantity: number) {
         this.props.quantity = quantity
-        this.touch()
-    }
-
-    set unitPrice(value: number) {
-        this.props.unitPrice = value
         this.touch()
     }
 

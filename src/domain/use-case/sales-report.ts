@@ -1,14 +1,11 @@
-import { UniqueEntityID } from "@/core/entities/unique.entity-id"
-import { Sale } from "../entities/sales"
 import { SalesRespository } from "../repositories/sale-repository"
-
 
 interface SalesReportRequest {
     from: Date
     to: Date
 }
 
-export class SalesReport {
+export class SalesReportUseCase {
     constructor(
         private salesReportRepository: SalesRespository
     ) {}

@@ -2,10 +2,14 @@ import { CreatePurchaseOrderUseCase } from "./purchase-order"
 import { PurchaseOrderRepository } from "../repositories/purcharse-order-repository"
 import { PurchaseOrder } from "../entities/purchase-order"
 import { Product } from "../entities/product"
+import { UniqueEntityID } from "@/core/entities/unique.entity-id"
 
 const fakePurchaseOrderRepository: PurchaseOrderRepository = {
     create: async (purchaseOrder: PurchaseOrder) => {
-        return;
+        return
+    },
+    getSubTotalPrice: function (productId: UniqueEntityID): Promise<PurchaseOrder[] | null> {
+        throw new Error("Function not implemented.")
     }
 }
 

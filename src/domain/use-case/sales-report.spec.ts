@@ -1,13 +1,13 @@
-import { SalesReport } from "./sales-report"
+import { SalesReportUseCase } from "./sales-report"
 import { SalesRespository } from "../repositories/sale-repository"
 import { Sale } from "../entities/sales"
 import { UniqueEntityID } from "@/core/entities/unique.entity-id"
 import dayjs from "dayjs"
-import isSameOrAfter from 'dayjs/plugin/isSameOrAfter';
-import isSameOrBefore from 'dayjs/plugin/isSameOrBefore';
+import isSameOrAfter from 'dayjs/plugin/isSameOrAfter'
+import isSameOrBefore from 'dayjs/plugin/isSameOrBefore'
 
-dayjs.extend(isSameOrAfter);
-dayjs.extend(isSameOrBefore);
+dayjs.extend(isSameOrAfter)
+dayjs.extend(isSameOrBefore)
 
 const saleOneTest = Sale.create({
     purchaseOrderId: new UniqueEntityID('1'),
@@ -56,8 +56,6 @@ const fakeSalesRepository: SalesRespository = {
             return null
         })
 
-        console.log('Vendas:', reportSales)
-
         if (reportSales.length === 0) {
             return null
         }
@@ -68,7 +66,7 @@ const fakeSalesRepository: SalesRespository = {
 
 
 test('report sales requested by date period', async () => {
-    const instanceReportSales = new SalesReport(fakeSalesRepository)
+    const instanceReportSales = new SalesReportUseCase(fakeSalesRepository)
 
     const reportSales = await instanceReportSales.execute({
         from: new Date('2024-12-01T00:00:00Z'),

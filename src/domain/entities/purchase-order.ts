@@ -5,8 +5,9 @@ import { Optional } from "../../core/types/optional"
 
 
 interface OrderProducts {
-    product_id: UniqueEntityID
+    productId: UniqueEntityID
     quantity: number
+    subTotal: number
 }
 
 interface PurchaseOrderProps {
