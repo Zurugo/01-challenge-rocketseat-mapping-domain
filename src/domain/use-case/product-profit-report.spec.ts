@@ -11,6 +11,13 @@ import { PurchaseOrder } from "../entities/purchase-order"
 dayjs.extend(isSameOrAfter)
 dayjs.extend(isSameOrBefore)
 
+interface ProfitProducts {
+    productId: string
+    totalQuantity: number
+    totalSubPriceEachItem: number
+}
+
+
 let saleItems: Sale[] = []
 let purchaseOrderItems: PurchaseOrder[] = []
 
@@ -47,16 +54,37 @@ const fakePurchaseOrderRepository: PurchaseOrderRepository = {
         return
     },
 
-    
-    getProfitProducts: async (productId: UniqueEntityID) => {
-        const listProdutsInOrder = purchaseOrderItems.forEach((item) => item.id === productId) {
-            // return item
+    getProductId: async (purchaseOrderId: string) => {
+        for (const order of purchaseOrderItems) {
+            const id = order.id.toString()
+            if (id === purchaseOrderId) {
+                for (const item of order.orderProducts) {
+                    return item.productId
+                }
+            }
         }
 
+        throw new Error('Product not found')
+    },
 
+    
+    getProfitProducts: async (productId: string) => {
+        let totalQuantity = 0
+        let subTotalProfitProduct = 0
 
-
-
-        throw new Error("Function not implemented.")
+        for(const order of purchaseOrderItems) {
+            for (const product of order.orderProducts) {
+                const id = product.productId.toString()
+                if (id === productId) {
+                    totalQuantity += product.quantity
+                    subTotalProfitProduct += product.subTotal
+                }
+            }
+        }
+        return {
+            productId,
+            totalQuantity,
+            subTotalProfitProduct
+        }
     }
 }
