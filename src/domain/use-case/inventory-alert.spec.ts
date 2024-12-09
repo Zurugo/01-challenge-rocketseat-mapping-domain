@@ -8,7 +8,7 @@ const product = Inventory.create({
     productId: new UniqueEntityID('1'),
     minInventory: new MinimumInventory(3),
     quantity: 3,
-    unitPrice: 5
+
 })
 
 const fakeInventoryRepository: InventoryRepository = {
