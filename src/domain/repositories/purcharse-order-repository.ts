@@ -5,6 +5,6 @@ import { PurchaseOrder } from "../entities/purchase-order"
 
 export interface PurchaseOrderRepository {
     create(purchaseOrder: PurchaseOrder): Promise<void>
-    getProductId(purchaseOrderId: string): Promise<UniqueEntityID>
+    getProductId(purchaseOrderId: string): Promise<String[]>
     getProfitProducts(productId: string): Promise<{} | null>
 }

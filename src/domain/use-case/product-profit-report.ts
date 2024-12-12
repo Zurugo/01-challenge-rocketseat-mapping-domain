@@ -31,6 +31,7 @@ export class ProductProfitReportUseCase {
                 return product
             })
         )
+        console.log('Array de UniqueEntityID:', products)
 
         const profitProducts = await Promise.all(
             products.map(async (id) => {
@@ -39,6 +40,6 @@ export class ProductProfitReportUseCase {
             })
         )
 
-        return profitProducts        
+        return profitProducts      
     }
 }
