@@ -8,6 +8,11 @@ interface ProductProfitReportRequest {
     to: Date
 }
 
+type Product = {
+    productId: UniqueEntityID;  // ID do produto, de um tipo específico
+    quantity: number;           // Quantidade do produto
+    subTotal: number;           // Subtotal do produto
+  };
 export class ProductProfitReportUseCase {
     constructor (
         private salesRepository: SalesRespository,
@@ -31,15 +36,48 @@ export class ProductProfitReportUseCase {
                 return product
             })
         )
-        console.log('Array de UniqueEntityID:', products)
+
+        const flattenedProductIds = products.flat()
+
+        console.log(flattenedProductIds)
 
         const profitProducts = await Promise.all(
-            products.map(async (id) => {
-                const profitProducts = await this.purchaseOrderRepository.getProfitProducts(id.toString())
-                return profitProducts
+            flattenedProductIds.map(async (productId) => {
+                return this.purchaseOrderRepository.getProfitProduct(productId.toString())
             })
         )
 
-        return profitProducts      
+        const consolidated = profitProducts.reduce<Record<string, { totalQuantity: number; profit: number }>>(
+            (acc, product) => {
+
+                if (!product) {
+                    return acc
+                }
+
+                const { productId, quantity, subTotal } = product;
+          
+                if (!acc[productId.toString()]) {
+                    acc[productId.toString()] = {
+                        totalQuantity: 0,
+                        profit: 0,
+                    };
+                }
+          
+                acc[productId.toString()].totalQuantity += quantity;
+                acc[productId.toString()].profit += subTotal;
+          
+                return acc;
+            },
+            {} 
+        );
+
+        console.log(consolidated)
+
+        const result = Object.entries(consolidated).map(([productId, { totalQuantity, profit }]) => ({
+            productId,
+            totalQuantity,
+            profit,
+        }));
+        console.log(result)
     }
 }

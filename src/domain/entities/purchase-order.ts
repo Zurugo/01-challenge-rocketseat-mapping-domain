@@ -3,7 +3,7 @@ import { UniqueEntityID } from "../../core/entities/unique.entity-id"
 import { Optional } from "../../core/types/optional"
 
 
-interface OrderProducts {
+export interface OrderProducts {
     productId: UniqueEntityID
     quantity: number
     subTotal: number

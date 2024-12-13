@@ -19,7 +19,6 @@ interface ProfitProducts {
 
 
 const purchaseOrderOne = PurchaseOrder.create({
-    //id: 306c46ea-6688-443f-a863-4811ca18ad63
     purhcaserId: new UniqueEntityID('1'),
     sellerId: new UniqueEntityID('1'),
     orderProducts: [
@@ -33,6 +32,12 @@ const purchaseOrderOne = PurchaseOrder.create({
             quantity: 50,
             subTotal: 50
         },
+        {
+            productId: new UniqueEntityID('3'),
+            quantity: 1,
+            subTotal: 120
+        },
+
     ],
     totalPrice: 80
 })
@@ -42,7 +47,7 @@ const purchaseOrderTwo = PurchaseOrder.create({
     sellerId: new UniqueEntityID('1'),
     orderProducts: [
         {
-            productId: new UniqueEntityID('3'),
+            productId: new UniqueEntityID('1'),
             quantity: 3,
             subTotal: 30
         },
@@ -50,6 +55,11 @@ const purchaseOrderTwo = PurchaseOrder.create({
             productId: new UniqueEntityID('2'),
             quantity: 60,
             subTotal: 60
+        },
+        {
+            productId: new UniqueEntityID('3'),
+            quantity: 1,
+            subTotal: 120
         },
     ],
     totalPrice: 90
@@ -67,7 +77,7 @@ const saleTwoTest = Sale.create({
 
 let saleItems: Sale[] = [saleOneTest, saleTwoTest]
 let purchaseOrders: PurchaseOrder[] = [purchaseOrderOne, purchaseOrderTwo]
-let productIds: String[] = []
+let profitProducts: [] = []
 
 const fakeSalesRepository: SalesRespository = {
     create: async (sale: Sale) => {
@@ -113,25 +123,20 @@ const fakePurchaseOrderRepository: PurchaseOrderRepository = {
         return productIds
     },
   
-    getProfitProducts: async (productId: string) => {
-        const getProducts = purchaseOrders.flatMap(order => order.orderProducts)
+    getProfitProduct: async (productId: string) => {
+        const products = purchaseOrders.flatMap(order => order.orderProducts)
+        const product = products.find(item => item.productId.toString() === productId)
 
-        const getProductId = getProducts.filter(item => item.productId.toString() === productId)
-
-        if (getProductId.length === 0) {
-            return null
+        if (!product) {
+            throw new Error("Product not found")
         }
 
-        const profitReport = getProductId.reduce(
-            (acc, product) => {
-                acc.quantity += product.quantity
-                acc.subTotal += product.subTotal
-
-                return acc
-            }
-        )
-
-        return profitReport
+        
+        return {
+            productId: product.productId,
+            quantity: product.quantity,
+            subTotal: product.subTotal
+        }
     }
 }
 
@@ -142,5 +147,6 @@ test('Product profit reports by period', async () => {
         from: new Date('2024-12-01T00:00:00Z'),
         to: new Date('2024-12-31T00:00:00Z')
     })
-    console.log(productProfitReport)
+
+    expect(productProfitReport).toHaveLength(3)
 })
