@@ -78,6 +78,7 @@ export class ProductProfitReportUseCase {
             totalQuantity,
             profit,
         }));
-        console.log(result)
+        
+        return result
     }
 }
