@@ -77,7 +77,7 @@ const saleTwoTest = Sale.create({
 
 let saleItems: Sale[] = [saleOneTest, saleTwoTest]
 let purchaseOrders: PurchaseOrder[] = [purchaseOrderOne, purchaseOrderTwo]
-let profitProducts: [] = []
+
 
 const fakeSalesRepository: SalesRespository = {
     create: async (sale: Sale) => {
