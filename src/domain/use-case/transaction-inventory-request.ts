@@ -1,6 +1,6 @@
 import { UniqueEntityID } from "@/core/entities/unique.entity-id"
-import { RequestTransactionInventory } from "../entities/inventory-transaction-request"
-import { RequestTransactionInventoryRepository } from "../repositories/inventory-transaction-request-repository"
+import { TransactionInventory } from "../entities/inventory-transaction"
+import { TransactionInventoryRepository } from "../repositories/inventory-transaction-repository"
 
 interface TransactionInventoryRequest {
     inventoryId: string
@@ -8,13 +8,13 @@ interface TransactionInventoryRequest {
     quantity: number 
 }
 
-export class TransactionInventory {
+export class TransactionInventoryUseCase {
     constructor(
-        private requestTransactionInventoryRepository: RequestTransactionInventoryRepository
+        private requestTransactionInventoryRepository: TransactionInventoryRepository
     ) {}
 
     async execute({ inventoryId, transactionType, quantity }: TransactionInventoryRequest){
-        const transaction = RequestTransactionInventory.create({
+        const transaction = TransactionInventory.create({
             inventoryId: new UniqueEntityID(inventoryId),
             transactionType,
             quantity

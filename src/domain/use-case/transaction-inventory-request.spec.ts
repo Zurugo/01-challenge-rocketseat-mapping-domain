@@ -1,17 +1,20 @@
-import { TransactionInventory } from "./transaction-inventory-request"
-import { RequestTransactionInventoryRepository } from "../repositories/inventory-transaction-request-repository"
-import { RequestTransactionInventory } from "../entities/inventory-transaction-request"
+import { TransactionInventoryUseCase } from "./transaction-inventory-request"
+import { TransactionInventoryRepository } from "../repositories/inventory-transaction-repository"
+import { TransactionInventory } from "../entities/inventory-transaction"
 import { UniqueEntityID } from "@/core/entities/unique.entity-id"
 
-const fakeRequestTransactionInventory: RequestTransactionInventoryRepository = {
-    create: async (transaction: RequestTransactionInventory) => {
-        return;
+const fakeRequestTransactionInventory: TransactionInventoryRepository = {
+    create: async (transaction: TransactionInventory) => {
+        return
+    },
+    searchTransactionFromPeriod: function (from: Date, to: Date): Promise<TransactionInventory[] | null> {
+        throw new Error("Function not implemented.")
     }
 }
 
 
 test('create a transaction inventory request', async () => {
-    const instanceRequestTransactionInventory = new TransactionInventory(fakeRequestTransactionInventory)
+    const instanceRequestTransactionInventory = new TransactionInventoryUseCase(fakeRequestTransactionInventory)
 
     const transaction = await instanceRequestTransactionInventory.execute({
         inventoryId: '1',

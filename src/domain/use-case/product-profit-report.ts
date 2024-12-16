@@ -1,18 +1,12 @@
 import { SalesRespository } from "../repositories/sale-repository"
 import { PurchaseOrderRepository } from "../repositories/purcharse-order-repository"
-import { ProductRepository } from "../repositories/product-repository"
-import { UniqueEntityID } from "@/core/entities/unique.entity-id"
+
 
 interface ProductProfitReportRequest {
     from: Date
     to: Date
 }
 
-type Product = {
-    productId: UniqueEntityID;  // ID do produto, de um tipo específico
-    quantity: number;           // Quantidade do produto
-    subTotal: number;           // Subtotal do produto
-  };
 export class ProductProfitReportUseCase {
     constructor (
         private salesRepository: SalesRespository,
@@ -27,7 +21,7 @@ export class ProductProfitReportUseCase {
         }
 
         if (!salesPeriod) {
-            return
+            return;
         }
 
         const products = await Promise.all(
@@ -39,7 +33,6 @@ export class ProductProfitReportUseCase {
 
         const flattenedProductIds = products.flat()
 
-        console.log(flattenedProductIds)
 
         const profitProducts = await Promise.all(
             flattenedProductIds.map(async (productId) => {
@@ -70,8 +63,6 @@ export class ProductProfitReportUseCase {
             },
             {} 
         );
-
-        console.log(consolidated)
 
         const result = Object.entries(consolidated).map(([productId, { totalQuantity, profit }]) => ({
             productId,

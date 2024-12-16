@@ -10,7 +10,7 @@ interface ReqTransactionInventoryProps {
     updatedAt?: Date
 }
 
-export class RequestTransactionInventory extends Entity<ReqTransactionInventoryProps> {
+export class TransactionInventory extends Entity<ReqTransactionInventoryProps> {
     get inventoryId() {
         return this.props.inventoryId
     }
@@ -49,7 +49,7 @@ export class RequestTransactionInventory extends Entity<ReqTransactionInventoryP
         props: Optional<ReqTransactionInventoryProps, 'createdAt'>,
         id?: UniqueEntityID
     ) {
-        const transactionInventoryRequest = new RequestTransactionInventory({
+        const transactionInventoryRequest = new TransactionInventory({
             ...props,
             createdAt: new Date()
         }, id)
