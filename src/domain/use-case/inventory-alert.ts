@@ -11,7 +11,7 @@ export class InventoryAlertUseCase {
     ) {}
 
     async execute({ productId }: InventoryAlertRequest) {
-        const productInventory = await this.inventoryRepository.getProduct(productId)
+        const productInventory = await this.inventoryRepository.getInventory(productId)
     
         if(!productInventory) {
             return 'Product not found in inventory'

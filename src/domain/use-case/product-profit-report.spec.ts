@@ -1,22 +1,16 @@
 import { ProductProfitReportUseCase } from "./product-profit-report"
 import { SalesRespository } from "../repositories/sale-repository"
 import { PurchaseOrderRepository } from "../repositories/purcharse-order-repository"
+import { UniqueEntityID } from "@/core/entities/unique.entity-id"
 import { Sale } from "../entities/sales"
+import { PurchaseOrder } from "../entities/purchase-order"
 import dayjs from "dayjs"
 import isSameOrAfter from 'dayjs/plugin/isSameOrAfter'
 import isSameOrBefore from 'dayjs/plugin/isSameOrBefore'
-import { UniqueEntityID } from "@/core/entities/unique.entity-id"
-import { PurchaseOrder } from "../entities/purchase-order"
+
 
 dayjs.extend(isSameOrAfter)
 dayjs.extend(isSameOrBefore)
-
-interface ProfitProducts {
-    productId: string
-    totalQuantity: number
-    totalSubPriceEachItem: number
-}
-
 
 const purchaseOrderOne = PurchaseOrder.create({
     purhcaserId: new UniqueEntityID('1'),

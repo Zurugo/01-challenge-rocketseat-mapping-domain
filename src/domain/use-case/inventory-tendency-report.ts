@@ -1,4 +1,3 @@
-import { Inventory } from "../entities/inventory"
 import { InventoryRepository } from "../repositories/inventory-repository"
 import { TransactionInventoryRepository } from "../repositories/inventory-transaction-repository"
 
@@ -19,7 +18,7 @@ export class InventoryTendencyReportUseCase {
         const transactions = await this.transacationInventoryRepository.searchTransactionFromPeriod(from , to)
 
         if (!transactions) {
-            return;
+            return 'No transactions found'
         }
 
         if(transactions.length === 0) {
@@ -28,7 +27,11 @@ export class InventoryTendencyReportUseCase {
 
         const inventoryTendencyReports = await Promise.all(
             transactions.map(async (transaction) => {
-                const inventoryProps = await this.inventoryRepository.getInventory(transaction.id.toString())
+                const inventoryProps = await this.inventoryRepository.getInventory(transaction.inventoryId.toString())
+
+                // if(!inventoryProps) {
+                //     return null
+                // }
 
                 return {
                     productId: inventoryProps?.productId,
@@ -36,7 +39,6 @@ export class InventoryTendencyReportUseCase {
                     mov_type: transaction.transactionType,
                     balance: inventoryProps?.quantity,
                     tendency: transaction.quantity
-
                 }
             })
         )

@@ -12,7 +12,7 @@ const product = Inventory.create({
 })
 
 const fakeInventoryRepository: InventoryRepository = {
-    getProduct: async (productId: string) => {
+    getInventory: async (productId: string) => {
         if (productId === String(product.productId)) {
             return product
         }

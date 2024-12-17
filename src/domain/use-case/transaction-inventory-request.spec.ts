@@ -7,7 +7,7 @@ const fakeRequestTransactionInventory: TransactionInventoryRepository = {
     create: async (transaction: TransactionInventory) => {
         return
     },
-    searchTransactionFromPeriod: function (from: Date, to: Date): Promise<TransactionInventory[] | null> {
+    searchTransactionFromPeriod: async (from: Date, to: Date) => {
         throw new Error("Function not implemented.")
     }
 }
