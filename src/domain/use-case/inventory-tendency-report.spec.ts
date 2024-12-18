@@ -14,6 +14,7 @@ import { Sale } from "../entities/sales"
 dayjs.extend(isSameOrAfter)
 dayjs.extend(isSameOrBefore)
 
+
 const inventoryItemOne = Inventory.create({
     productId: new UniqueEntityID('1'),
     minInventory: new MinimumInventory(2),
@@ -26,11 +27,14 @@ const inventoryItemTwo = Inventory.create({
     quantity: 50
 })
 
+
 const transactionInventoryOne = TransactionInventory.create({
     inventoryId: inventoryItemOne.id,
     transactionType: 'INBOUND',
     quantity: 2
 })
+//Refresh actually quantity in inventory
+inventoryItemOne.rmvItem(transactionInventoryOne.quantity)
 
 
 const transactionInventoryTwo = TransactionInventory.create({
@@ -38,18 +42,24 @@ const transactionInventoryTwo = TransactionInventory.create({
     transactionType: 'OUTBOUND',
     quantity: 5
 })
+inventoryItemOne.rmvItem(transactionInventoryTwo.quantity)
+
 
 const transactionInventoryThree = TransactionInventory.create({
     inventoryId: inventoryItemOne.id,
     transactionType: 'OUTBOUND',
     quantity: 20
 })
+inventoryItemOne.rmvItem(transactionInventoryThree.quantity)
 
 const transactionInventoryFour = TransactionInventory.create({
     inventoryId: inventoryItemTwo.id,
     transactionType: 'OUTBOUND',
     quantity: 20
 })
+inventoryItemTwo.rmvItem(transactionInventoryFour.quantity)
+
+
 
 
 let inventory: Inventory[] = [inventoryItemOne, inventoryItemTwo]
@@ -97,6 +107,8 @@ test('Tendency inventory by period', async () => {
         from: new Date('2024-12-01T00:00:00Z'),
         to: new Date('2024-12-31T00:00:00Z')
     })
+
+    console.log(inventoryTendencyReports)
 
     expect(inventoryTendencyReports).toHaveLength(4)
 })

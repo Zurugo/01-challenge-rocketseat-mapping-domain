@@ -47,7 +47,7 @@ export class Inventory extends Entity<InventoryProps> {
         this.touch()
     }
 
-    protected addItem(qty: number) {
+    public addItem(qty: number) {
        const curQty = this.props.quantity + qty
 
        this.props.quantity = curQty
@@ -55,7 +55,7 @@ export class Inventory extends Entity<InventoryProps> {
        return curQty
     }
 
-    protected rmvItem(qty: number) {
+    public rmvItem(qty: number) {
         const curQty = this.props.quantity - qty
 
         this.props.quantity = curQty
