@@ -4,6 +4,7 @@ import { TransactionInventoryRepository } from "../repositories/inventory-transa
 
 interface TransactionInventoryRequest {
     inventoryId: string
+    stockistId: string
     transactionType: 'INBOUND' | 'OUTBOUND'
     quantity: number 
 }
@@ -13,9 +14,10 @@ export class TransactionInventoryUseCase {
         private requestTransactionInventoryRepository: TransactionInventoryRepository
     ) {}
 
-    async execute({ inventoryId, transactionType, quantity }: TransactionInventoryRequest){
+    async execute({ inventoryId, stockistId, transactionType, quantity }: TransactionInventoryRequest){
         const transaction = TransactionInventory.create({
             inventoryId: new UniqueEntityID(inventoryId),
+            stockistId: new UniqueEntityID(stockistId),
             transactionType,
             quantity
         })

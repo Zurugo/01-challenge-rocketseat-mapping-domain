@@ -1,9 +1,10 @@
-import { ProductProfitReportUseCase } from "./product-profit-report"
+import { UniqueEntityID } from "@/core/entities/unique.entity-id"
+import { PurchaseOrder } from "../entities/purchase-order"
+import { Sale } from "../entities/sales"
 import { SalesRespository } from "../repositories/sale-repository"
 import { PurchaseOrderRepository } from "../repositories/purcharse-order-repository"
-import { UniqueEntityID } from "@/core/entities/unique.entity-id"
-import { Sale } from "../entities/sales"
-import { PurchaseOrder } from "../entities/purchase-order"
+import { ProductProfitReportUseCase } from "./product-profit-report"
+
 import dayjs from "dayjs"
 import isSameOrAfter from 'dayjs/plugin/isSameOrAfter'
 import isSameOrBefore from 'dayjs/plugin/isSameOrBefore'

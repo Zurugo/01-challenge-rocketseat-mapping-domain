@@ -1,7 +1,8 @@
 import { Entity } from "../../core/entities/entity"
-import { Optional } from "../../core/types/optional"
 import { UniqueEntityID } from "../../core/entities/unique.entity-id"
 import { MinimumInventory } from "./value-objects/minimum-inventory-quantity"
+import { Optional } from "../../core/types/optional"
+
 
 
 interface InventoryProps {

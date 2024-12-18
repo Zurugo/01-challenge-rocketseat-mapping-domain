@@ -1,5 +1,5 @@
-import { InventoryRepository } from "../repositories/inventory-repository"
 import { MinimumInventory } from "../entities/value-objects/minimum-inventory-quantity"
+import { InventoryRepository } from "../repositories/inventory-repository"
 
 interface InventoryAlertRequest {
     productId: string

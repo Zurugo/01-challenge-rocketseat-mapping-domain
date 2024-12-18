@@ -1,14 +1,17 @@
-import { CreatePurchaseOrderUseCase } from "./purchase-order"
-import { PurchaseOrderRepository } from "../repositories/purcharse-order-repository"
-import { PurchaseOrder } from "../entities/purchase-order"
-import { Product } from "../entities/product"
 import { UniqueEntityID } from "@/core/entities/unique.entity-id"
+import { Product } from "../entities/product"
+import { OrderProducts, PurchaseOrder } from "../entities/purchase-order"
+import { PurchaseOrderRepository } from "../repositories/purcharse-order-repository"
+import { CreatePurchaseOrderUseCase } from "./purchase-order"
 
 const fakePurchaseOrderRepository: PurchaseOrderRepository = {
     create: async (purchaseOrder: PurchaseOrder) => {
         return
     },
-    getSubTotalPrice: function (productId: UniqueEntityID): Promise<PurchaseOrder[] | null> {
+    getProductId: function (purchaseOrderId: string): Promise<String[]> {
+        throw new Error("Function not implemented.")
+    },
+    getProfitProduct: function (productId: string): Promise<OrderProducts | null> {
         throw new Error("Function not implemented.")
     }
 }
@@ -21,7 +24,7 @@ test('create an purchase order', async () => {
         color: 'red'
     })
 
-    const orderProducts = [{ product_id: pen.id, quantity: 2, subTotal: pen.unitPrice * 2 }]
+    const orderProducts = [{ productId: pen.id, quantity: 2, subTotal: pen.unitPrice * 2 }]
 
     const instancePurchaseOrder = new CreatePurchaseOrderUseCase(fakePurchaseOrderRepository)
 
@@ -34,6 +37,6 @@ test('create an purchase order', async () => {
     
     expect(purchaseOrder.orderProducts).toHaveLength(1)
     expect(purchaseOrder.orderProducts).toEqual([
-        expect.objectContaining({ product_id: pen.id, quantity: 2, subTotal: 6})
+        expect.objectContaining({ productId: pen.id, quantity: 2, subTotal: 6})
     ])
 }) 

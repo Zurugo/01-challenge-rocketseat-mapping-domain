@@ -1,8 +1,7 @@
-import { CreateSaleUseCase } from "./sales-product"
-import { SalesRespository } from "../repositories/sale-repository"
+import { UniqueEntityID } from "@/core/entities/unique.entity-id"
 import { Sale } from "../entities/sales"
-import { UniqueEntityID } from "@/core/entities/unique.entity-id";
-
+import { SalesRespository } from "../repositories/sale-repository"
+import { CreateSaleUseCase } from "./sales-product"
 
 const fakeSalesRepository: SalesRespository = {
     create: async (sale: Sale) => {

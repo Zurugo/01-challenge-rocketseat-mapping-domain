@@ -1,8 +1,10 @@
-import { InventoryAlertUseCase } from "./inventory-alert"
-import { InventoryRepository } from "../repositories/inventory-repository"
 import { Inventory } from "../entities/inventory"
 import { UniqueEntityID } from "@/core/entities/unique.entity-id"
 import { MinimumInventory } from "../entities/value-objects/minimum-inventory-quantity"
+import { InventoryRepository } from "../repositories/inventory-repository"
+import { InventoryAlertUseCase } from "./inventory-alert"
+
+
 
 const product = Inventory.create({
     productId: new UniqueEntityID('1'),

@@ -18,6 +18,7 @@ test('create a transaction inventory request', async () => {
 
     const transaction = await instanceRequestTransactionInventory.execute({
         inventoryId: '1',
+        stockistId: '1',
         transactionType: 'INBOUND',
         quantity: 3
     })

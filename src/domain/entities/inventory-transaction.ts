@@ -4,6 +4,7 @@ import { Optional } from "../../core/types/optional"
 
 interface ReqTransactionInventoryProps {
     inventoryId: UniqueEntityID
+    stockistId: UniqueEntityID
     transactionType: 'INBOUND' | 'OUTBOUND'
     quantity: number
     createdAt: Date
@@ -13,6 +14,10 @@ interface ReqTransactionInventoryProps {
 export class TransactionInventory extends Entity<ReqTransactionInventoryProps> {
     get inventoryId() {
         return this.props.inventoryId
+    }
+
+    get stockistId() {
+        return this.props.stockistId
     }
 
     get transactionType() {

@@ -1,7 +1,8 @@
-import { SalesReportUseCase } from "./sales-report"
-import { SalesRespository } from "../repositories/sale-repository"
-import { Sale } from "../entities/sales"
 import { UniqueEntityID } from "@/core/entities/unique.entity-id"
+import { Sale } from "../entities/sales"
+import { SalesRespository } from "../repositories/sale-repository"
+import { SalesReportUseCase } from "./sales-report"
+
 import dayjs from "dayjs"
 import isSameOrAfter from 'dayjs/plugin/isSameOrAfter'
 import isSameOrBefore from 'dayjs/plugin/isSameOrBefore'
